@@ -23,6 +23,9 @@
                 
                 <transition name="slide">
                     <div class="keyboard-wrap" @click="clickBoard" v-show="show_keyboard">
+                        <div class="keyboard" style="justify-content: flex-end;" v-if="activeIndex==7">
+                            <span class="k-done" v-on:>完成</span>
+                        </div>
                         <div v-if="activeIndex==0">
                             <div class="keyboard">
                                 <span v-for="item in provice.slice(0,10)">{{ item }}</span>
@@ -31,10 +34,11 @@
                                 <span v-for="item in provice.slice(10,19)">{{ item }}</span>
                             </div>
                             <div class="keyboard">
-                                <span v-for="item in provice.slice(19,27)">{{ item }}</span>
+                                <span v-for="item in provice.slice(19,26)">{{ item }}</span>
                             </div>
                             <div class="keyboard">
-                                <span v-for="item in provice.slice(27)">{{ item }}</span>
+                                <span v-for="item in provice.slice(26)">{{ item }}</span>
+                                <span class="k-del"></span>
                             </div>
                         </div>
                         <div v-else>
@@ -49,11 +53,10 @@
                             </div>
                             <div class="keyboard">
                                 <span v-for="item in letters.slice(19)">{{ item }}</span>
+                                <span v-if="activeIndex>=6" style="position: absolute; left: 2px;">挂</span>
+                                <span class="k-del"></span>
+
                             </div>
-                        </div>
-                        <div class="keyboard">
-                            <span class="k-del">删除</span>
-                            <span class="k-done" v-on:>完成</span>
                         </div>
                     </div>
                 </transition>
